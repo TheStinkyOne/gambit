@@ -19,8 +19,11 @@ package ru.ming13.gambit.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.squareup.otto.Subscribe;
+import ru.ming13.gambit.R;
 import ru.ming13.gambit.provider.GambitContract;
 import ru.ming13.gambit.ui.bus.BusProvider;
 import ru.ming13.gambit.ui.bus.CardCreatedEvent;
@@ -29,11 +32,23 @@ import ru.ming13.gambit.ui.fragment.CardCreationFragment;
 import ru.ming13.gambit.ui.intent.IntentException;
 import ru.ming13.gambit.ui.intent.IntentExtras;
 import ru.ming13.gambit.ui.intent.IntentFactory;
+import ru.ming13.gambit.ui.util.FragmentOperator;
 
 
-public class CardCreationActivity extends FragmentWrapperActivity
+public class CardCreationActivity extends SherlockFragmentActivity
 {
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_operation);
+
+		setUpFragment();
+	}
+
+	private void setUpFragment() {
+		FragmentOperator.addFragment(this, buildFragment(), R.id.container_operation_fragment);
+	}
+
 	protected Fragment buildFragment() {
 		return CardCreationFragment.newInstance(extractReceivedCardsUri());
 	}

@@ -18,19 +18,34 @@ package ru.ming13.gambit.ui.activity;
 
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.squareup.otto.Subscribe;
+import ru.ming13.gambit.R;
 import ru.ming13.gambit.ui.bus.BusProvider;
 import ru.ming13.gambit.ui.bus.CardEditedEvent;
 import ru.ming13.gambit.ui.bus.CardEditingCancelledEvent;
 import ru.ming13.gambit.ui.fragment.CardEditingFragment;
 import ru.ming13.gambit.ui.intent.IntentException;
 import ru.ming13.gambit.ui.intent.IntentExtras;
+import ru.ming13.gambit.ui.util.FragmentOperator;
 
 
-public class CardModificationActivity extends FragmentWrapperActivity
+public class CardModificationActivity extends SherlockFragmentActivity
 {
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_operation);
+
+		setUpFragment();
+	}
+
+	private void setUpFragment() {
+		FragmentOperator.addFragment(this, buildFragment(), R.id.container_operation_fragment);
+	}
+
 	protected Fragment buildFragment() {
 		return CardEditingFragment.newInstance(extractReceivedCardUri());
 	}
