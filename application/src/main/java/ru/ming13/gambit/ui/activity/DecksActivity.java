@@ -17,14 +17,16 @@
 package ru.ming13.gambit.ui.activity;
 
 
-import android.support.v4.app.Fragment;
-import ru.ming13.gambit.ui.fragment.DecksFragment;
+import android.os.Bundle;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import ru.ming13.gambit.R;
 
 
-public class DecksActivity extends FragmentWrapperActivity
+public class DecksActivity extends SherlockFragmentActivity
 {
 	@Override
-	protected Fragment buildFragment() {
-		return DecksFragment.newInstance();
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_decks);
 	}
 }
