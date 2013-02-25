@@ -17,6 +17,6 @@
 
 <resources>
 
-	<dimen name="width_operation_shadow">10dp</dimen>
+	<dimen name="width_fragment_shadow">10dp</dimen>
 
 </resources>

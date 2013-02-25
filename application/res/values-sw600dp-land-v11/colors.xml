@@ -17,6 +17,6 @@
 
 <resources>
 
-	<color name="background_operation_shadow">#dcdcdc</color>
+	<color name="background_fragment_shadow">#dcdcdc</color>
 
 </resources>
