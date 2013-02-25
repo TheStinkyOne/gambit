@@ -19,19 +19,34 @@ package ru.ming13.gambit.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.squareup.otto.Subscribe;
+import ru.ming13.gambit.R;
 import ru.ming13.gambit.ui.bus.BusProvider;
 import ru.ming13.gambit.ui.bus.DeckCreatedEvent;
 import ru.ming13.gambit.ui.bus.DeckCreationCancelledEvent;
 import ru.ming13.gambit.ui.fragment.DeckCreationFragment;
 import ru.ming13.gambit.ui.intent.IntentFactory;
+import ru.ming13.gambit.ui.util.FragmentOperator;
 
 
-public class DeckCreationActivity extends FragmentWrapperActivity
+public class DeckCreationActivity extends SherlockFragmentActivity
 {
 	@Override
-	protected Fragment buildFragment() {
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_operation);
+
+		setUpFragment();
+	}
+
+	private void setUpFragment() {
+		FragmentOperator.addFragment(this, buildFragment(), R.id.container_operation_fragment);
+	}
+
+	private Fragment buildFragment() {
 		return DeckCreationFragment.newInstance();
 	}
 
